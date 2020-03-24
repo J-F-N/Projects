@@ -7,4 +7,6 @@
     <color name="CardViewColor">#34A228EE</color>
     <color name="HeaderColor">#6D00FD</color>
     <color name="BackgroundColor">#AC5A5A</color>
+    <color name="DividerColor">#4E4E4E</color>
+    <color name="CardBackground">#E3E3E3</color>
 </resources>
