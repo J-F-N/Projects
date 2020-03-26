@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_reminder.*
 
         btnAddReminder.setOnClickListener {
 
-            val intent = Intent(this, AddReminderActivity :: class.java)
+            val intent = Intent(applicationContext, AddReminderActivity :: class.java)
             startActivity(intent)
         }
     }

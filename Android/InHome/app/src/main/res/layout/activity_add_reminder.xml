@@ -74,13 +74,6 @@
             android:layout_marginStart="10dp">
 
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Name"
-                android:textSize="20sp" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,7 +89,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="350dp"
+            android:layout_height="325dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
@@ -113,19 +106,18 @@
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:maxDate="12/31/2100"
+                android:clickable="true"
+                android:focusable="true"
+                android:maxDate="03/31/2020"
                 android:minDate="03/01/2020" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip2"
+            <CheckBox
+                android:id="@+id/CheckWeekly"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:gravity="bottom"
-                android:text="Repeat Weekly"
-                android:textAlignment="gravity"
-                android:textSize="20sp" />
+                android:layout_gravity="bottom|right"
+                android:layout_marginRight="10dp"
+                android:text="Repeat Weekly" />
 
         </androidx.cardview.widget.CardView>
 
