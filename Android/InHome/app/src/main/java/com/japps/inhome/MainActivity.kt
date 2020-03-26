@@ -1,7 +1,11 @@
  package com.japps.inhome
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import kotlinx.android.synthetic.main.activity_reminder.*
 
  class ReminderActivity : AppCompatActivity() {
 
@@ -9,5 +13,10 @@ import android.os.Bundle
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reminder)
 
+        btnAddReminder.setOnClickListener {
+
+            val intent = Intent(this, AddReminderActivity :: class.java)
+            startActivity(intent)
+        }
     }
 }
