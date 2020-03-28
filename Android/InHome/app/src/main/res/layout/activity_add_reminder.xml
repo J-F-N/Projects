@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_lock_idle_alarm"
-        android:contentDescription="Alarm Clock Widget" />
+        android:contentDescription="@string/alarm_clock_widget" />
 
     <View
         android:id="@+id/divider"
@@ -47,7 +47,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Edit Your Reminder Details"
+        android:text="@string/add_reminder_header"
         android:textColor="@color/CardBackground"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
@@ -86,7 +86,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Name your reminder..." />
+                        android:hint="@string/name_prompt" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.cardview.widget.CardView>
@@ -112,7 +112,7 @@
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="275dp"
-                    android:layout_marginTop="50dp"></androidx.viewpager2.widget.ViewPager2>
+                    android:layout_marginTop="50dp"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -143,10 +143,20 @@
                 app:cardBackgroundColor="@color/CardBackground">
 
                 <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
+                    android:id="@+id/buttonCreateReminder"
+                    android:layout_width="190dp"
                     android:layout_height="match_parent"
-                    android:text="Create Reminder" />
+                    android:layout_gravity="end"
+                    android:background="@color/ButtonColorSubmit"
+                    android:text="@string/create_reminder" />
+
+                <Button
+                    android:id="@+id/buttonCancelReminder"
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="@color/ButtonColorCancel"
+                    android:text="@string/rsrc_cancel"/>
             </androidx.cardview.widget.CardView>
 
         </LinearLayout>

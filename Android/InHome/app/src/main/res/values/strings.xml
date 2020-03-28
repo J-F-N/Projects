@@ -4,4 +4,9 @@
     <!-- String resources -->
     <string name="rsrc_tab_date">Date</string>
     <string name="rsrc_tab_weekly">Weekly</string>
+    <string name="alarm_clock_widget">Clock</string>
+    <string name="add_reminder_header">Edit Your Reminder Details</string>
+    <string name="name_prompt">Name your reminder</string>
+    <string name="create_reminder">Create Reminder</string>
+    <string name="rsrc_cancel">Cancel</string>
 </resources>

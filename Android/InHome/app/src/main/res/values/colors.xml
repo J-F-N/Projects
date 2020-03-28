@@ -9,4 +9,6 @@
     <color name="BackgroundColor">#AC5A5A</color>
     <color name="DividerColor">#4E4E4E</color>
     <color name="CardBackground">#E3E3E3</color>
+    <color name="ButtonColorSubmit">#33911A</color>
+    <color name="ButtonColorCancel">#A82222</color>
 </resources>
