@@ -1,5 +1,6 @@
 package com.japps.inhome
 import android.os.Bundle
+import android.widget.TableLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -22,7 +23,10 @@ class AddReminderActivity : AppCompatActivity() {
         tabLayout = findViewById(R.id.tabLayout)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when(position) {
+                0 -> tab.text = "Weekly"
+                else -> tab.text = "Date"
+            }
         }.attach()
-        TODO("fix the tab header text!!!!!!!!!!!!")
     }
 }
