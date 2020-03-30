@@ -1,8 +1,10 @@
  package com.japps.inhome
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
 import android.view.View
 import android.widget.Button
 import kotlinx.android.synthetic.main.activity_reminder.*
@@ -19,4 +21,4 @@ import kotlinx.android.synthetic.main.activity_reminder.*
             startActivity(intent)
         }
     }
-}
+ }
