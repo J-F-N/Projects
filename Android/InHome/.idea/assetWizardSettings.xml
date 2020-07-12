@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/home/john/.local/share/JetBrains/Toolbox/apps/IDEA-U/ch-0/193.6911.18/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_arrow_back_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/access_alarm/baseline_access_alarm_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -28,9 +28,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="84006e" />
-                            <entry key="outputName" value="ic_arrow_back_black_24dp" />
-                            <entry key="sourceFile" value="$USER_HOME$" />
+                            <entry key="outputName" value="ic_baseline_access_alarm_24" />
+                            <entry key="sourceFile" value="C:\Users\johnf\Documents\GitHub\Projects\Android\InHome" />
                           </map>
                         </option>
                       </PersistentState>
