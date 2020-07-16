@@ -1,6 +1,8 @@
 package com.example.inhome;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -24,5 +27,13 @@ public class MainActivity extends AppCompatActivity {
         cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
         cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
         cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
+
+        alarmRecyclerView = findViewById(R.id.recycler_alarm);
+        alarmRecyclerView.setHasFixedSize(true);
+        alarmLayoutManager = new LinearLayoutManager(this);
+        alarmRecyclerAdapter = new alarmAdapter(cardList);
+
+        alarmRecyclerView.setLayoutManager(alarmLayoutManager);
+        alarmRecyclerView.setAdapter(alarmRecyclerAdapter);
     }
 }
