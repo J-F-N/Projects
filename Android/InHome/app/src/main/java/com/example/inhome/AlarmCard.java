@@ -1,13 +1,13 @@
 package com.example.inhome;
 
-public class card {
+public class AlarmCard {
 
     private int alarmImage;
     private String title;
     private String when;
 
     //constructor
-    public card(int alarmImage, String title, String when){
+    public AlarmCard(int alarmImage, String title, String when){
         this.alarmImage = alarmImage;
         this.title = title;
         this.when = when;

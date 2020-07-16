@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView alarmRecycler;
-    private RecyclerView.Adapter alarmAdapter;
+    private RecyclerView alarmRecyclerView;
+    private RecyclerView.Adapter alarmRecyclerAdapter;
     private RecyclerView.LayoutManager alarmLayoutManager;
 
     @Override
@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<card> cardList = new ArrayList<>();
-        cardList.add(new card(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
-        cardList.add(new card(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
-        cardList.add(new card(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
-        cardList.add(new card(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
-        cardList.add(new card(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
+        ArrayList<AlarmCard> cardList = new ArrayList<>();
+        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
+        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
+        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
+        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
+        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
     }
 }
