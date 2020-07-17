@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class alarmAdapter extends RecyclerView.Adapter<alarmAdapter.alarmViewHolder> {
 
-    private ArrayList<AlarmCard> alarmList;
+    private ArrayList<Alarm> alarmList;
 
     public static class alarmViewHolder extends RecyclerView.ViewHolder{
 
@@ -29,7 +29,7 @@ public class alarmAdapter extends RecyclerView.Adapter<alarmAdapter.alarmViewHol
         }
     }
 
-    public alarmAdapter(ArrayList<AlarmCard> alarmList) {
+    public alarmAdapter(ArrayList<Alarm> alarmList) {
 
         this.alarmList = alarmList;
     }
@@ -46,7 +46,7 @@ public class alarmAdapter extends RecyclerView.Adapter<alarmAdapter.alarmViewHol
     @Override
     public void onBindViewHolder(@NonNull alarmViewHolder holder, int position) {
 
-        AlarmCard card = alarmList.get(position);
+        Alarm card = alarmList.get(position);
 
         holder.alarmImage.setImageResource(card.getAlarmImage());
         holder.alarmTextTitle.setText(card.getTitle());

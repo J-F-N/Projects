@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView alarmRecyclerView;
     private RecyclerView.Adapter alarmRecyclerAdapter;
     private RecyclerView.LayoutManager alarmLayoutManager;
+    public AlarmManager alarmManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,17 +22,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<AlarmCard> cardList = new ArrayList<>();
-        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
-        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
-        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
-        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
-        cardList.add(new AlarmCard(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
-
+        alarmManager = new AlarmManager();
         alarmRecyclerView = findViewById(R.id.recycler_alarm);
         alarmRecyclerView.setHasFixedSize(true);
         alarmLayoutManager = new LinearLayoutManager(this);
-        alarmRecyclerAdapter = new alarmAdapter(cardList);
+        alarmRecyclerAdapter = new alarmAdapter(alarmManager.shareList());
 
         alarmRecyclerView.setLayoutManager(alarmLayoutManager);
         alarmRecyclerView.setAdapter(alarmRecyclerAdapter);
