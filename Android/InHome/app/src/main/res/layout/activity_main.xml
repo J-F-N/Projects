@@ -21,10 +21,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButton7"
+        android:id="@+id/button_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription=""
+        android:contentDescription="button to add new alarm"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/toolbar_alarm"
         app:layout_constraintHorizontal_bias="0.892"
