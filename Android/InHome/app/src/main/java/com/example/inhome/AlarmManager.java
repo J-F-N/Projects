@@ -21,6 +21,16 @@ public class AlarmManager {
         alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
         alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
         alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
+        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
 
     }
     /********* shareList ***************************************************

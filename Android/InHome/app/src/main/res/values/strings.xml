@@ -1,4 +1,4 @@
-<>
+<resources>
     <string name="text_appName">InHome</string>
     <string name="description_addNewAlarm">Add alarm button</string>
     <string name="spinner_showAll">All</string>
