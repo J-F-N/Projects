@@ -2,4 +2,7 @@
     <string name="text_appName">InHome</string>
     <string name="description_addNewAlarm">Add alarm button</string>
     <string name="spinner_showAll">All</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 </resources>

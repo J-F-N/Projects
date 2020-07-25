@@ -4,28 +4,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.squareup.timessquare.CalendarPickerView;
-
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class FragmentDate extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        Date today = new Date();
+       /* Date today = new Date();
         Calendar nextYear = Calendar.getInstance();
         nextYear.add(Calendar.YEAR,1);
 
-        CalendarPickerView datePicker = (CalendarPickerView) getView().findViewById(R.id.calendar);
+        CalendarPickerView datePicker = (CalendarPickerView) Objects.requireNonNull(getView()).findViewById(R.id.calendar);
         datePicker.init(today, nextYear.getTime()).withSelectedDate(today);
 
         Date dateSelected = datePicker.getSelectedDate(); //date selected
@@ -48,8 +44,16 @@ public class FragmentDate extends Fragment {
             public void onDateUnselected(Date date) {
 
             }
-        });
+        });*/
 
-        return inflater.inflate(R.layout.fragment_date, container, false);
+        return (ViewGroup) inflater.inflate(R.layout.fragment_date, container, false);
+    }
+
+    public static FragmentDate newInstance() {
+
+        Bundle args = new Bundle();
+        FragmentDate fragment = new FragmentDate();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

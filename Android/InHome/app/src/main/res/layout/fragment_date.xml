@@ -71,10 +71,10 @@
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
-                    <com.squareup.timessquare.CalendarPickerView
+                    <!--<com.squareup.timessquare.CalendarPickerView
                         android:id="@+id/calendar"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent" />-->
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
