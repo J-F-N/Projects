@@ -49,6 +49,10 @@ public class AlarmManager {
  Alarm(object) alarm: the alarm retrieved from alarmList.
  ************************************************************************/
 
+    public Alarm getItem (int position) {
+
+        return alarmList.get(position);
+    }
 }
 
 

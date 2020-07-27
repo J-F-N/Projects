@@ -1,30 +1,27 @@
 package com.example.inhome;
 
-public class Alarm {
+import java.util.ArrayList;
 
-    private int alarmID;    //unique alarm identifier
-    private int alarmImage; //image to show alarm type
-    private String title;
-    private String when;    //date and time of the alarm
+public abstract class Alarm {
 
-    //constructor
-    public Alarm(int alarmImage, String title, String when){
-        this.alarmImage = alarmImage;
-        this.title = title;
-        this.when = when;
-        alarmID = 0;        //id will be properly assigned from database value
-    }
+    protected int alarmID;              //unique alarm identifier
+    protected int alarmImage;           //image to show alarm type
+    protected String title;
+    protected ArrayList<String> when;   //todo remove after specific alarms are implemented
 
     //getters
-    public int getAlarmImage() {return alarmImage;}
-    public String getTitle() {return title;}
-    public String getWhen() {return when;}
+    public abstract int getAlarmImage();
+    public abstract String getTitle();
+    public abstract ArrayList<String> getWhen();
 
-    public int getAlarmID() { return alarmID; }
+    public abstract int getAlarmID();
 
     //setters
-    public void setAlarmImage(int alarmImage) {this.alarmImage = alarmImage;}
-    public void setTitle(String title) {this.title = title;}
-    public void setWhen(String when) {this.when = when;}
-    public void setAlarmID(int alarmID) { this.alarmID = alarmID; }
+    public abstract void setAlarmImage(int alarmImage);
+    public abstract void setTitle(String title);
+    public abstract void setWhen(ArrayList<String> when);
+    public abstract void setAlarmID(int alarmID);
+
+    //todo remove after testing
+    public abstract void changeText (String text);
 }

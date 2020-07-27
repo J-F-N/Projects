@@ -2,6 +2,7 @@ package com.example.inhome;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,9 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class alarmAdapter extends RecyclerView.Adapter<alarmAdapter.alarmViewHolder> {
+public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.alarmViewHolder> {
 
     private ArrayList<Alarm> alarmList;
+    private OnItemClickListener clickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+
+        clickListener = (OnItemClickListener) listener;
+    }
 
     public static class alarmViewHolder extends RecyclerView.ViewHolder{
 
@@ -20,16 +31,28 @@ public class alarmAdapter extends RecyclerView.Adapter<alarmAdapter.alarmViewHol
         public TextView alarmTextTitle;
         public TextView alarmTextDate;
 
-        public alarmViewHolder(@NonNull View itemView) {
+        public alarmViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
 
             super(itemView);
             alarmImage = itemView.findViewById(R.id.image_alarm);
             alarmTextTitle = itemView.findViewById(R.id.text_alarm_title);
             alarmTextDate = itemView.findViewById(R.id.text_alarm_when);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
-    public alarmAdapter(ArrayList<Alarm> alarmList) {
+    public AlarmAdapter(ArrayList<Alarm> alarmList) {
 
         this.alarmList = alarmList;
     }
@@ -38,7 +61,7 @@ public class alarmAdapter extends RecyclerView.Adapter<alarmAdapter.alarmViewHol
     @Override
     public alarmViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_card, parent, false);
-        alarmViewHolder alarmHolder = new alarmViewHolder(view);
+        alarmViewHolder alarmHolder = new alarmViewHolder(view, clickListener);
 
         return alarmHolder;
     }
