@@ -9,10 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.alarmViewHolder> {
 
-    private ArrayList<Alarm> alarmList;
+    private HashMap<Integer, Alarm> alarmList;
 
     public static class alarmViewHolder extends RecyclerView.ViewHolder{
 
@@ -29,7 +31,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.alarmViewHol
         }
     }
 
-    public AlarmAdapter(ArrayList<Alarm> alarmList) {
+    public AlarmAdapter(HashMap<Integer, Alarm> alarmList) {
 
         this.alarmList = alarmList;
     }

@@ -1,8 +1,19 @@
 package com.example.inhome;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class AlarmWeekly extends Alarm {
+public class AlarmWeekly extends Alarm implements Parcelable {
+
+    private boolean monday;
+    private boolean tuesday;
+    private boolean wednesday;
+    private boolean thursday;
+    private boolean friday;
+    private boolean saturday;
+    private boolean sunday;
 
     public AlarmWeekly(int alarmID, int alarmImage, String title, String when) {
 
@@ -10,6 +21,16 @@ public class AlarmWeekly extends Alarm {
         this.alarmImage = alarmImage;
         this.title = title;
         this.when = when;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 
     @Override

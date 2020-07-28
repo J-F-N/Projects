@@ -1,8 +1,11 @@
 package com.example.inhome;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
-public class AlarmDate extends Alarm {
+public class AlarmDate extends Alarm  implements Parcelable {
 
     public AlarmDate(int alarmID, int alarmImage, String title, String when) {
 
@@ -10,6 +13,16 @@ public class AlarmDate extends Alarm {
         this.alarmImage = alarmImage;
         this.title = title;
         this.when = when;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
     }
 
     @Override
