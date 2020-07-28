@@ -32,20 +32,16 @@
                     android:id="@+id/textView_enterTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter a Title"
+                    android:text="Title"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/input_title"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_title"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Title" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Enter A Title"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -120,20 +116,16 @@
                     android:id="@+id/textView_enterDesc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Enter a Description"
+                    android:text="Description"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
+                    android:id="@+id/input_description"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/input_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Description" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Enter A Description"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

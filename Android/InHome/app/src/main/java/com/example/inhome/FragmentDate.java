@@ -1,22 +1,15 @@
 package com.example.inhome;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.ImageButton;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.squareup.timessquare.CalendarPickerView;
-
-import java.text.DateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.TimeZone;
+import java.util.Objects;
 
 public class FragmentDate extends Fragment {
 
@@ -35,7 +28,7 @@ public class FragmentDate extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DateSelectionActivity.class);
 
-                startActivity(intent);
+                Objects.requireNonNull(getActivity()).startActivityForResult(intent, 1);
             }
         });
 

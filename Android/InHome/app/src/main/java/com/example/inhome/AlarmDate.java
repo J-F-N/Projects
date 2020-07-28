@@ -3,17 +3,39 @@ package com.example.inhome;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-
 public class AlarmDate extends Alarm  implements Parcelable {
 
-    public AlarmDate(int alarmID, int alarmImage, String title, String when) {
+
+
+    public AlarmDate(int alarmID, int alarmImage, String title, String when, String description) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
         this.title = title;
         this.when = when;
+        this.desrciption = description;
     }
+
+    protected AlarmDate(Parcel in) {
+
+        alarmID = in.readInt();
+        alarmImage = in.readInt();
+        title = in.readString();
+        when = in.readString();
+        desrciption = in.readString();
+    }
+
+    public static final Creator<AlarmDate> CREATOR = new Creator<AlarmDate>() {
+        @Override
+        public AlarmDate createFromParcel(Parcel in) {
+            return new AlarmDate(in);
+        }
+
+        @Override
+        public AlarmDate[] newArray(int size) {
+            return new AlarmDate[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -23,6 +45,11 @@ public class AlarmDate extends Alarm  implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
 
+        parcel.writeInt(alarmID);
+        parcel.writeInt(alarmImage);
+        parcel.writeString(title);
+        parcel.writeString(when);
+        parcel.writeString(desrciption);
     }
 
     @Override

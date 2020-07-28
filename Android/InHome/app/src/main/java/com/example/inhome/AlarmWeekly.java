@@ -3,8 +3,6 @@ package com.example.inhome;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-
 public class AlarmWeekly extends Alarm implements Parcelable {
 
     private boolean monday;
@@ -15,13 +13,35 @@ public class AlarmWeekly extends Alarm implements Parcelable {
     private boolean saturday;
     private boolean sunday;
 
-    public AlarmWeekly(int alarmID, int alarmImage, String title, String when) {
+    public AlarmWeekly(int alarmID, int alarmImage, String title, String when, String description) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
         this.title = title;
         this.when = when;
+        this.desrciption = description;
     }
+
+    protected AlarmWeekly(Parcel in) {
+
+        alarmID = in.readInt();
+        alarmImage = in.readInt();
+        title = in.readString();
+        when = in.readString();
+        desrciption = in.readString();
+    }
+
+    public static final Creator<AlarmWeekly> CREATOR = new Creator<AlarmWeekly>() {
+        @Override
+        public AlarmWeekly createFromParcel(Parcel in) {
+            return new AlarmWeekly(in);
+        }
+
+        @Override
+        public AlarmWeekly[] newArray(int size) {
+            return new AlarmWeekly[size];
+        }
+    };
 
     @Override
     public int describeContents() {
@@ -31,6 +51,11 @@ public class AlarmWeekly extends Alarm implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
 
+        parcel.writeInt(alarmID);
+        parcel.writeInt(alarmImage);
+        parcel.writeString(title);
+        parcel.writeString(when);
+        parcel.writeString(desrciption);
     }
 
     @Override

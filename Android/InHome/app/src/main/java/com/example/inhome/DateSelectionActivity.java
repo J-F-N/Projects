@@ -2,23 +2,19 @@ package com.example.inhome;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.timessquare.CalendarPickerView;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class DateSelectionActivity extends AppCompatActivity {
 
-public final String DATES = "dates";
-    List<Date> selectedDates;
     Button buttonDone;
+    Intent intentFromParent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,7 +22,6 @@ public final String DATES = "dates";
         setContentView(R.layout.activity_date_selection);
 
         buildGUIElements();
-
     }
 
     public void buildGUIElements() {
@@ -46,13 +41,22 @@ public final String DATES = "dates";
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(DateSelectionActivity.this, AddAlarmActivity.class);
+                intentFromParent = getIntent();
 
-/*                selectedDates = (ArrayList<Date>) calendar.getSelectedDates();
+                List<Date> selectedDates = calendar.getSelectedDates();
 
-                intent.putExtra("Dates", (ArrayList<Date>) selectedDates);*/
+                long[] longDates = new long[selectedDates.size()];
 
-                startActivity(intent);
+                for(int i = 0; i < selectedDates.size(); i++) {
+                    longDates[i] = selectedDates.get(i).getTime();
+                }
+
+                Intent resultIntent = new Intent(DateSelectionActivity.this, AddAlarmActivity.class);
+                //todo finish passing data back to parent activity
+                resultIntent.putExtra("dates", longDates);
+
+                setResult(RESULT_OK, resultIntent);
+                finish();
             }
         });
     }

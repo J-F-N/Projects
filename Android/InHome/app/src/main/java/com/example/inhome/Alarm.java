@@ -8,12 +8,12 @@ public abstract class Alarm {
     protected int alarmImage;           //image to show alarm type
     protected String title;
     protected String when;   //todo remove after specific alarms are implemented
+    protected String desrciption;
 
     //getters
     public abstract int getAlarmImage();
     public abstract String getTitle();
     public abstract String getWhen();
-
     public abstract int getAlarmID();
 
     //setters
