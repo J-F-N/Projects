@@ -16,23 +16,23 @@ public class AlarmManager {
 
         alarmList = new ArrayList<Alarm>();
 
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "today"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "Teusday"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "July 14th"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "whenever"));
-        alarmList.add(new Alarm(R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "never"));
-
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(1, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(2, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(3, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(4, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(5, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(6, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(7, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(8, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(9, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(10, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(11, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(12, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(13, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
+        alarmList.add(new AlarmWeekly(14, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime"));
     }
+
     /********* shareList ***************************************************
      Description: Returns the alarm list as an ArrayList. Used by adapter to
      populate the recyclerview.
@@ -52,6 +52,17 @@ public class AlarmManager {
     public Alarm getItem (int position) {
 
         return alarmList.get(position);
+    }
+
+    public void CreateNewWeekly (int alarmId, int alarmImage, String alarmTitle, String when) {
+
+
+    }
+
+    public void CreateNewDate (int alarmId, int alarmImage, String alarmTitle, String when) {
+
+
+        //todo change for alarm dates
     }
 }
 

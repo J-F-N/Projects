@@ -41,6 +41,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Title" />
@@ -51,7 +52,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/fragment_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
             android:layout_marginBottom="6dp"
             android:focusable="auto"
             android:isScrollContainer="true">
@@ -69,7 +70,7 @@
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/viewpager2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
             </LinearLayout>
 
@@ -97,7 +98,7 @@
                     android:textStyle="bold" />
 
                 <TimePicker
-                    android:id="@+id/timePicker1"
+                    android:id="@+id/timePicker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:timePickerMode="spinner" />
@@ -128,6 +129,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/input_description"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Description" />
@@ -145,7 +147,7 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/button_submit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@string/string_submit"
@@ -155,7 +157,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/button_cancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="@android:string/cancel"

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AlarmWeekly extends Alarm {
 
-    public AlarmWeekly(int alarmID, int alarmImage, String title, ArrayList<String> when) {
+    public AlarmWeekly(int alarmID, int alarmImage, String title, String when) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
@@ -14,7 +14,7 @@ public class AlarmWeekly extends Alarm {
 
     @Override
     public int getAlarmImage() {
-        return 0;
+        return alarmImage;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class AlarmWeekly extends Alarm {
     }
 
     @Override
-    public ArrayList<String> getWhen() {
+    public String getWhen() {
         return when;
     }
 
@@ -43,7 +43,7 @@ public class AlarmWeekly extends Alarm {
     }
 
     @Override
-    public void setWhen(ArrayList<String> when) {
+    public void setWhen(String when) {
         this.when = when;
     }
 

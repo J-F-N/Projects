@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class AlarmDate extends Alarm {
 
-    public AlarmDate(int alarmID, int alarmImage, String title, ArrayList<String> when) {
+    public AlarmDate(int alarmID, int alarmImage, String title, String when) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
@@ -23,7 +23,7 @@ public class AlarmDate extends Alarm {
     }
 
     @Override
-    public ArrayList<String> getWhen() {
+    public String getWhen() {
         return when;
     }
 
@@ -43,7 +43,7 @@ public class AlarmDate extends Alarm {
     }
 
     @Override
-    public void setWhen(ArrayList<String> when) {
+    public void setWhen(String when) {
         this.when = when;
     }
 

@@ -10,11 +10,11 @@ import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AlarmManager alarmManager;
+    public AlarmManager alarmManager;
     private RecyclerView alarmRecyclerView;
     private RecyclerView.LayoutManager alarmLayoutManager;
     private ImageButton addButton;
-    private AlarmAdapter alarmRecyclerAdapter;
+    public AlarmAdapter alarmRecyclerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,29 +22,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         alarmManager = new AlarmManager();
+
+       buildRecycler();
+       buildGUIElements();
+    }
+
+    public void buildRecycler() {
+
         alarmRecyclerView = findViewById(R.id.recycler_alarm);
         alarmLayoutManager = new LinearLayoutManager(this);
-        addButton = (ImageButton) findViewById(R.id.button_add);
 
         alarmRecyclerView.setHasFixedSize(true);
         alarmRecyclerAdapter = new AlarmAdapter(alarmManager.shareList());
         alarmRecyclerView.setLayoutManager(alarmLayoutManager);
         alarmRecyclerView.setAdapter(alarmRecyclerAdapter);
+    }
 
-        alarmRecyclerAdapter.setOnItemClickListener(new AlarmAdapter.OnItemClickListener() {
+    public void buildGUIElements() {
 
-            @Override
-            public void onItemClick(int position) {
-
-                //todo change to my apps logic
-                alarmManager.getItem(position).changeText("Clicked");
-            }
-        });
+        addButton = (ImageButton) findViewById(R.id.button_add);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddAlarmActivity.class);
+
+
 
                 startActivity(intent);
             }
