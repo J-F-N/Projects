@@ -1,5 +1,6 @@
 package com.example.inhome;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -7,6 +8,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +29,28 @@ public class MainActivity extends AppCompatActivity {
 
        buildRecycler();
        buildGUIElements();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1) {
+
+            if (resultCode == RESULT_OK) {
+
+                Alarm alarm = data.getParcelableExtra("alarm");
+                alarmManager.addAlarm(alarm);
+
+                alarmRecyclerAdapter.notifyDataSetChanged();
+
+                Toast.makeText(MainActivity.this, "Added Alarm " + alarm.title, Toast.LENGTH_SHORT).show();
+            }
+
+            if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(MainActivity.this, "Cancelled Adding Alarm", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void buildRecycler() {
@@ -47,9 +73,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AddAlarmActivity.class);
 
-
-
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
     }

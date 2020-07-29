@@ -5,21 +5,16 @@ import android.os.Parcelable;
 
 public class AlarmWeekly extends Alarm implements Parcelable {
 
-    private boolean monday;
-    private boolean tuesday;
-    private boolean wednesday;
-    private boolean thursday;
-    private boolean friday;
-    private boolean saturday;
-    private boolean sunday;
+    private boolean[] dayArray = new boolean[7];
 
-    public AlarmWeekly(int alarmID, int alarmImage, String title, String when, String description) {
+    public AlarmWeekly(int alarmID, int alarmImage, String title, String when, String description, boolean[] dayArray) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
         this.title = title;
         this.when = when;
-        this.desrciption = description;
+        this.description = description;
+        System.arraycopy(this.dayArray, 0, dayArray, 0, 7);
     }
 
     protected AlarmWeekly(Parcel in) {
@@ -28,7 +23,7 @@ public class AlarmWeekly extends Alarm implements Parcelable {
         alarmImage = in.readInt();
         title = in.readString();
         when = in.readString();
-        desrciption = in.readString();
+        description = in.readString();
     }
 
     public static final Creator<AlarmWeekly> CREATOR = new Creator<AlarmWeekly>() {
@@ -43,6 +38,8 @@ public class AlarmWeekly extends Alarm implements Parcelable {
         }
     };
 
+    public AlarmWeekly() {}
+
     @Override
     public int describeContents() {
         return 0;
@@ -55,7 +52,7 @@ public class AlarmWeekly extends Alarm implements Parcelable {
         parcel.writeInt(alarmImage);
         parcel.writeString(title);
         parcel.writeString(when);
-        parcel.writeString(desrciption);
+        parcel.writeString(description);
     }
 
     @Override
@@ -69,14 +66,15 @@ public class AlarmWeekly extends Alarm implements Parcelable {
     }
 
     @Override
-    public String getWhen() {
-        return when;
-    }
-
-    @Override
     public int getAlarmID() {
         return 0;
     }
+
+    @Override
+    public int getHour() { return hour; }
+
+    @Override
+    public int getMinute() { return minute; }
 
     @Override
     public void setAlarmImage(int alarmImage) {
@@ -89,13 +87,29 @@ public class AlarmWeekly extends Alarm implements Parcelable {
     }
 
     @Override
-    public void setWhen(String when) {
-        this.when = when;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public void setAlarmID(int alarmID) {
         this.alarmID = alarmID;
+    }
+
+    @Override
+    public void setHour(int hour) { this.hour = hour; }
+
+    @Override
+    public void setMinute(int minute) { this.minute = minute; }
+
+    public void setDays(int position, boolean setting) {
+
+        dayArray[position] = setting;
+    }
+
+    public void setDays(boolean[] dayArray) {
+
+        System.arraycopy(this.dayArray, 0, dayArray, 0, 7);
     }
 
     @Override

@@ -3,17 +3,26 @@ package com.example.inhome;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+
 public class AlarmDate extends Alarm  implements Parcelable {
 
+    ArrayList<Long> dateArrayList;
 
+    public AlarmDate() { dateArrayList = new ArrayList<Long>(); }
 
-    public AlarmDate(int alarmID, int alarmImage, String title, String when, String description) {
+    public AlarmDate(int alarmID, int alarmImage, String title, String when, String description, long[] dateArray) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
         this.title = title;
         this.when = when;
-        this.desrciption = description;
+        this.description = description;
+
+        for (long l : dateArray) {
+
+            dateArrayList.add(l);
+        }
     }
 
     protected AlarmDate(Parcel in) {
@@ -22,7 +31,7 @@ public class AlarmDate extends Alarm  implements Parcelable {
         alarmImage = in.readInt();
         title = in.readString();
         when = in.readString();
-        desrciption = in.readString();
+        description = in.readString();
     }
 
     public static final Creator<AlarmDate> CREATOR = new Creator<AlarmDate>() {
@@ -49,12 +58,12 @@ public class AlarmDate extends Alarm  implements Parcelable {
         parcel.writeInt(alarmImage);
         parcel.writeString(title);
         parcel.writeString(when);
-        parcel.writeString(desrciption);
+        parcel.writeString(description);
     }
 
     @Override
     public int getAlarmImage() {
-        return 0;
+        return alarmImage;
     }
 
     @Override
@@ -63,14 +72,15 @@ public class AlarmDate extends Alarm  implements Parcelable {
     }
 
     @Override
-    public String getWhen() {
-        return when;
+    public int getAlarmID() {
+        return alarmID;
     }
 
     @Override
-    public int getAlarmID() {
-        return 0;
-    }
+    public int getHour() { return hour; }
+
+    @Override
+    public int getMinute() { return minute; }
 
     @Override
     public void setAlarmImage(int alarmImage) {
@@ -83,13 +93,24 @@ public class AlarmDate extends Alarm  implements Parcelable {
     }
 
     @Override
-    public void setWhen(String when) {
-        this.when = when;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public void setAlarmID(int alarmID) {
         this.alarmID = alarmID;
+    }
+
+    @Override
+    public void setHour(int hour) { this.hour = hour; }
+
+    @Override
+    public void setMinute(int minute) { this.minute = minute; }
+
+    public void setDateArrayList(ArrayList<Long> dateArray) {
+
+        dateArrayList.addAll(dateArray);
     }
 
     @Override

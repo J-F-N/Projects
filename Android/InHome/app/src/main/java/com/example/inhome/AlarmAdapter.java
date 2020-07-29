@@ -52,7 +52,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.alarmViewHol
 
         holder.alarmImage.setImageResource(card.getAlarmImage());
         holder.alarmTextTitle.setText(card.getTitle());
-        holder.alarmTextDate.setText(card.getWhen());
     }
 
     @Override

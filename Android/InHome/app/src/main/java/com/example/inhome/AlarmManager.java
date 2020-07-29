@@ -9,28 +9,30 @@ import java.util.HashMap;
 //constructor
 public class AlarmManager {
 
+    int IDCounter = 15; //todo remove after proper id generation is established
     HashMap<Integer, Alarm> alarmHashMap;
 
     //constructor
     public AlarmManager() {
 
         alarmHashMap = new HashMap<Integer, Alarm>();
+        boolean[] testingArray = {true, true, true, true, true, true, true};
 
-        alarmHashMap.put(0, new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(1, new AlarmWeekly(1, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(2, new AlarmWeekly(2, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(3, new AlarmWeekly(3, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(4, new AlarmWeekly(4, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(5, new AlarmWeekly(5, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(6, new AlarmWeekly(6, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(7, new AlarmWeekly(7, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(8, new AlarmWeekly(8, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(9, new AlarmWeekly(9, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(10, new AlarmWeekly(10, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(11, new AlarmWeekly(11, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(12, new AlarmWeekly(12, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(13, new AlarmWeekly(13, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
-        alarmHashMap.put(14, new AlarmWeekly(14, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm"));
+        alarmHashMap.put(0, new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(1, new AlarmWeekly(1, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(2, new AlarmWeekly(2, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(3, new AlarmWeekly(3, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(4, new AlarmWeekly(4, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(5, new AlarmWeekly(5, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(6, new AlarmWeekly(6, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(7, new AlarmWeekly(7, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(8, new AlarmWeekly(8, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(9, new AlarmWeekly(9, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(10, new AlarmWeekly(10, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(11, new AlarmWeekly(11, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(12, new AlarmWeekly(12, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(13, new AlarmWeekly(13, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        alarmHashMap.put(14, new AlarmWeekly(14, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
     }
 
     /********* shareList ***************************************************
@@ -54,12 +56,14 @@ public class AlarmManager {
         return alarmHashMap.get(alarmID);
     }
 
-    /*public void addAlarm (Alarm alarm) {
-
+    public void addAlarm (Alarm alarm) {
 
         //todo generate an alarmID for the alarm to insert into hashmap
-        alarmHashMap.put(alarmID, alarm);
-    }*/
+        alarm.alarmID = IDCounter;
+        IDCounter++;
+
+        alarmHashMap.put(alarm.alarmID, alarm);
+    }
 }
 
 
