@@ -1,22 +1,31 @@
+/**************************AlarmDate************************************
+ Description: Subclass of Alarm. Used to represent an alarm which
+ will sound based on dates selected by the user. Implements Parcelable
+ interface to allow sending the object back to parent activity.
+ ***********************************************************************
+ Created Date: 07/20/2020
+ ***********************************************************************
+ Author: John Neigel
+ ***********************************************************************
+ Last Edit: 07/27/2020
+ **********************************************************************/
 package com.example.inhome;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import java.util.ArrayList;
 
 public class AlarmDate extends Alarm  implements Parcelable {
 
-    ArrayList<Long> dateArrayList;
+    ArrayList<Long> dateArrayList; //used to store Long form dates selected by user.
 
     public AlarmDate() { dateArrayList = new ArrayList<Long>(); }
 
-    public AlarmDate(int alarmID, int alarmImage, String title, String when, String description, long[] dateArray) {
+    public AlarmDate(int alarmID, int alarmImage, String title, String description, long[] dateArray) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
         this.title = title;
-        this.when = when;
         this.description = description;
 
         for (long l : dateArray) {
@@ -25,15 +34,16 @@ public class AlarmDate extends Alarm  implements Parcelable {
         }
     }
 
+    //needed for parcelable interface
     protected AlarmDate(Parcel in) {
 
         alarmID = in.readInt();
         alarmImage = in.readInt();
         title = in.readString();
-        when = in.readString();
         description = in.readString();
     }
 
+    //needed for parcelable interface
     public static final Creator<AlarmDate> CREATOR = new Creator<AlarmDate>() {
         @Override
         public AlarmDate createFromParcel(Parcel in) {
@@ -46,18 +56,19 @@ public class AlarmDate extends Alarm  implements Parcelable {
         }
     };
 
+    //needed for parcelable interface
     @Override
     public int describeContents() {
         return 0;
     }
 
+    //needed for parcelable interface
     @Override
     public void writeToParcel(Parcel parcel, int i) {
 
         parcel.writeInt(alarmID);
         parcel.writeInt(alarmImage);
         parcel.writeString(title);
-        parcel.writeString(when);
         parcel.writeString(description);
     }
 
@@ -108,11 +119,13 @@ public class AlarmDate extends Alarm  implements Parcelable {
     @Override
     public void setMinute(int minute) { this.minute = minute; }
 
+    //used to set this alarms ArrayList of Long dates
     public void setDateArrayList(ArrayList<Long> dateArray) {
 
         dateArrayList.addAll(dateArray);
     }
 
+    //todo remove after testing
     @Override
     public void changeText(String text) {
         this.title = text;

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -13,10 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 public class AddAlarmActivity extends AppCompatActivity {
 
@@ -30,6 +28,7 @@ public class AddAlarmActivity extends AppCompatActivity {
     EditText inputDescription;
     EditText inputTitle;
     TimePicker timePicker;
+    ImageButton recordButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,6 +93,7 @@ public class AddAlarmActivity extends AppCompatActivity {
         inputDescription = findViewById(R.id.input_description);
         inputTitle = findViewById(R.id.input_title);
         timePicker = findViewById(R.id.timePicker);
+        recordButton = findViewById(R.id.button_record);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +167,15 @@ public class AddAlarmActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 finish();
+            }
+        });
+
+        recordButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //todo create media recorder, turn on audio recording, save to db, playback audio recording
             }
         });
     }

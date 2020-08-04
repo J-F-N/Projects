@@ -1,3 +1,13 @@
+/**************************MainActivity**********************************
+ Description: Main driver class for the application. Handles
+ instantiation of important object and view managing classes.
+ ************************************************************************
+ Created Date: 07/15/2020
+ ************************************************************************
+ Author: John Neigel
+ ************************************************************************
+ Last Edit: 07/28/2020
+ ***********************************************************************/
 package com.example.inhome;
 
 import androidx.annotation.Nullable;
@@ -10,27 +20,27 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import java.util.Arrays;
-
 public class MainActivity extends AppCompatActivity {
 
-    public AlarmManager alarmManager;
-    private RecyclerView alarmRecyclerView;
-    private RecyclerView.LayoutManager alarmLayoutManager;
-    private ImageButton addButton;
-    public AlarmAdapter alarmRecyclerAdapter;
+    public AlarmManager alarmManager;                       // object to manage alarms at runtime
+    private RecyclerView alarmRecyclerView;                 // for association with View
+    private RecyclerView.LayoutManager alarmLayoutManager;  // manages RecyclerView object
+    private ImageButton addButton;                          // button to trigger AddAlarmActivity
+    public AlarmAdapter alarmRecyclerAdapter;               // adapter to connect alarms with the RecyclerView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        alarmManager = new AlarmManager();
+        alarmManager = new AlarmManager();  // instantiate AlarmManager to manage alarms during runtime.
 
        buildRecycler();
        buildGUIElements();
     }
 
+    // runs when we return from the child activity AddAlarmActivity
+    // we retrieve data from the activities intent here.
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -53,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /***************************buildRecycler*****************************
+     Description: Instantiates and assigns views, adapters, and manager
+     classes for RecyclerView operations and display.
+     *********************************************************************
+     Params: N/A
+     *********************************************************************
+     Return: VOID
+     ********************************************************************/
     public void buildRecycler() {
 
         alarmRecyclerView = findViewById(R.id.recycler_alarm);
@@ -62,8 +80,30 @@ public class MainActivity extends AppCompatActivity {
         alarmRecyclerAdapter = new AlarmAdapter(alarmManager.shareList());
         alarmRecyclerView.setLayoutManager(alarmLayoutManager);
         alarmRecyclerView.setAdapter(alarmRecyclerAdapter);
+        alarmRecyclerAdapter.setMyOnClickItemListener(new AlarmAdapter.MyOnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                alarmManager.getItem(position); //position is also this alarms ID,
+                                                //since they are positioned by their IDs.
+                //todo go to edit alarm activity and send this alarm objects info
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+
+                alarmManager.deleteAlarm(position);
+                alarmRecyclerAdapter.notifyItemRemoved(position);
+            }
+        });
     }
 
+    /***************************buildGUIElements**************************
+     Description: Instantiates and assigns views to GUI objects.
+     *********************************************************************
+     Params: N/A
+     *********************************************************************
+     Return: VOID
+     ********************************************************************/
     public void buildGUIElements() {
 
         addButton = (ImageButton) findViewById(R.id.button_add);

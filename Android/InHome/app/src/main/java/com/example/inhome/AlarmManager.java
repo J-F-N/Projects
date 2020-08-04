@@ -1,47 +1,62 @@
-/********* AlarmManager ***************************************************
- Class Description: Class to manage Alarm objects during runtime. Also handles insertion, retrieval, and deletion of Alarms from database.
- ************************************************************************/
+/**************************CLASS NAME***********************************
+ Description: Class to manage Alarm objects during runtime. Also handles
+ insertion, retrieval, and deletion of Alarms from database.
+ ***********************************************************************
+ Created Date: 07/19/2020
+ ***********************************************************************
+ Author: John Neigel
+ ***********************************************************************
+ Last Edit: 07/29/2020
+ **********************************************************************/
 
 package com.example.inhome;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //constructor
 public class AlarmManager {
 
-    int IDCounter = 15; //todo remove after proper id generation is established
-    HashMap<Integer, Alarm> alarmHashMap;
+    int IDCounter = 15; //todo remove after proper id generation is established in DB
+    ArrayList<Alarm> alarmList;
 
     //constructor
     public AlarmManager() {
 
-        alarmHashMap = new HashMap<Integer, Alarm>();
-        boolean[] testingArray = {true, true, true, true, true, true, true};
+        alarmList = new ArrayList<Alarm>();
+        boolean[] testingArray = {true, true, true, true, true, true, true}; //todo remove after testing
 
-        alarmHashMap.put(0, new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(1, new AlarmWeekly(1, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(2, new AlarmWeekly(2, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(3, new AlarmWeekly(3, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(4, new AlarmWeekly(4, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(5, new AlarmWeekly(5, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(6, new AlarmWeekly(6, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(7, new AlarmWeekly(7, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(8, new AlarmWeekly(8, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(9, new AlarmWeekly(9, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(10, new AlarmWeekly(10, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(11, new AlarmWeekly(11, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(12, new AlarmWeekly(12, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(13, new AlarmWeekly(13, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
-        alarmHashMap.put(14, new AlarmWeekly(14, R.drawable.ic_baseline_access_alarm_24, "Do Something", "sometime", "a useful alarm", testingArray));
+        //todo remove after testing.
+        // sample alarms to test RecyclerView
+        
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 1", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 2", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 3", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 4", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 5", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 6", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 7", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 8", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 9", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 10", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 11", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 12", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 13", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 14", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 15", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 16", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 17", "a useful alarm", testingArray));
+        alarmList.add(new AlarmWeekly(0, R.drawable.ic_baseline_access_alarm_24, "Alarm 18", "a useful alarm", testingArray));
     }
 
     /********* shareList ***************************************************
      Description: Returns the alarm list as an ArrayList. Used by adapter to
      populate the recyclerview.
      ********** Return *******************************************************
-     alarmList: ArrayList containing Alarm Objects.
+     alarmHashMap: HashMap containing Alarm Objects.
      ************************************************************************/
-    public HashMap<Integer, Alarm> shareList() { return alarmHashMap; }
+    public ArrayList<Alarm> shareList() { return alarmList; }
+    //public HashMap<Integer, Alarm> shareList() { return alarmHashMap; }
 
     /********* getItem ***************************************************
      Description: Returns an alarm object found by the key in the HashMap.
@@ -51,19 +66,22 @@ public class AlarmManager {
      Alarm(object) alarm: the alarm retrieved from alarmList.
      ************************************************************************/
 
-    public Alarm getItem (int alarmID) {
+    public Alarm getItem (int position) {
 
-        return alarmHashMap.get(alarmID);
+        return alarmList.get(position);
     }
 
     public void addAlarm (Alarm alarm) {
 
-        //todo generate an alarmID for the alarm to insert into hashmap
+        //todo remove after testing
+        // generate an alarmID for the alarm to insert into hashmap
         alarm.alarmID = IDCounter;
         IDCounter++;
 
-        alarmHashMap.put(alarm.alarmID, alarm);
+        alarmList.add(alarm);
     }
+
+    public void deleteAlarm(int alarmID) { alarmList.remove(alarmID); }
 }
 
 

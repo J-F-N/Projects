@@ -1,3 +1,15 @@
+/**************************AlarmWeekly**********************************
+ Description: Subclass of Alarm. Used to represent an alarm which
+ will sound based on weekdays selected by the user. Implements
+ Parcelable interface to allow sending the object back to parent
+ activity.
+ ***********************************************************************
+ Created Date: 07/20/2020
+ ***********************************************************************
+ Author: John Neigel
+ ***********************************************************************
+ Last Edit: 07/27/2020
+ **********************************************************************/
 package com.example.inhome;
 
 import android.os.Parcel;
@@ -5,27 +17,29 @@ import android.os.Parcelable;
 
 public class AlarmWeekly extends Alarm implements Parcelable {
 
-    private boolean[] dayArray = new boolean[7];
+    private boolean[] dayArray = new boolean[7]; // used to store the active days of the week
 
-    public AlarmWeekly(int alarmID, int alarmImage, String title, String when, String description, boolean[] dayArray) {
+    public AlarmWeekly(int alarmID, int alarmImage, String title, String description, boolean[] dayArray) {
 
         this.alarmID = alarmID;
         this.alarmImage = alarmImage;
         this.title = title;
-        this.when = when;
         this.description = description;
         System.arraycopy(this.dayArray, 0, dayArray, 0, 7);
     }
 
+    public AlarmWeekly() {}
+
+    //needed for parcelable interface
     protected AlarmWeekly(Parcel in) {
 
         alarmID = in.readInt();
         alarmImage = in.readInt();
         title = in.readString();
-        when = in.readString();
         description = in.readString();
     }
 
+    //needed for parcelable interface
     public static final Creator<AlarmWeekly> CREATOR = new Creator<AlarmWeekly>() {
         @Override
         public AlarmWeekly createFromParcel(Parcel in) {
@@ -38,20 +52,21 @@ public class AlarmWeekly extends Alarm implements Parcelable {
         }
     };
 
-    public AlarmWeekly() {}
 
+
+    //needed for parcelable interface
     @Override
     public int describeContents() {
         return 0;
     }
 
+    //needed for parcelable interface
     @Override
     public void writeToParcel(Parcel parcel, int i) {
 
         parcel.writeInt(alarmID);
         parcel.writeInt(alarmImage);
         parcel.writeString(title);
-        parcel.writeString(when);
         parcel.writeString(description);
     }
 
@@ -102,16 +117,19 @@ public class AlarmWeekly extends Alarm implements Parcelable {
     @Override
     public void setMinute(int minute) { this.minute = minute; }
 
+    // set a specific day of the week.
     public void setDays(int position, boolean setting) {
 
         dayArray[position] = setting;
     }
 
+    // set this alarms active days of the week
     public void setDays(boolean[] dayArray) {
 
         System.arraycopy(this.dayArray, 0, dayArray, 0, 7);
     }
 
+    //todo remove after testing
     @Override
     public void changeText(String text) {
         this.title = text;

@@ -1,3 +1,14 @@
+/**************************DateSelectionActivity************************
+ Description: Activity for picking dates from the CalendarPickerView.
+ Started from AddAlarmActivity and returns selected dates in the form of
+ a long[].
+ ***********************************************************************
+ Created Date: 07/28/2020
+ ***********************************************************************
+ Author: John Neigel
+ ***********************************************************************
+ Last Edit: 07/29/2020
+ **********************************************************************/
 package com.example.inhome;
 
 import android.content.Intent;
@@ -13,8 +24,9 @@ import java.util.List;
 
 public class DateSelectionActivity extends AppCompatActivity {
 
-    Button buttonDone;
-    Intent intentFromParent;
+    Button buttonDone;          // to return to AddAlarmActivity sending selected dates.
+    Intent intentFromParent;    // contains List from AddAlarmActivity.
+                                // This will be sent back with date longs.
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +36,13 @@ public class DateSelectionActivity extends AppCompatActivity {
         buildGUIElements();
     }
 
+    /***************************buildGUIElements**************************
+     Description: Instantiates and assigns views to GUI objects.
+     *********************************************************************
+     Params: N/A
+     *********************************************************************
+     Return: VOID
+     ********************************************************************/
     public void buildGUIElements() {
 
         buttonDone = findViewById(R.id.button_done);
@@ -31,7 +50,11 @@ public class DateSelectionActivity extends AppCompatActivity {
         nextYear.add(Calendar.YEAR, 1);
 
         final CalendarPickerView calendar = (CalendarPickerView) findViewById(R.id.calendar);
-        Date today = new Date();
+
+        Date today = new Date();    //empty constructor defaults to current date
+
+        //initialize a new CalendarPickerView with the current date selected and
+        // the ability to select multiple dates.
         calendar.init(today, nextYear.getTime())
                 .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
                 .withSelectedDate(today);
@@ -43,19 +66,19 @@ public class DateSelectionActivity extends AppCompatActivity {
 
                 intentFromParent = getIntent();
 
-                List<Date> selectedDates = calendar.getSelectedDates();
+                List<Date> selectedDates = calendar.getSelectedDates(); // dates returned as List<>
 
-                long[] longDates = new long[selectedDates.size()];
+                long[] longDates = new long[selectedDates.size()]; // make an array long enough to contain List<> dates.
 
+                // for each long in List<>, assign to array
                 for(int i = 0; i < selectedDates.size(); i++) {
                     longDates[i] = selectedDates.get(i).getTime();
                 }
 
                 Intent resultIntent = new Intent(DateSelectionActivity.this, AddAlarmActivity.class);
-                //todo finish passing data back to parent activity
-                resultIntent.putExtra("dates", longDates);
+                resultIntent.putExtra("dates", longDates); // add the long[] with dates to the intent
+                setResult(RESULT_OK, resultIntent); //indicate on return to AddAlarmActivity that operations were successful
 
-                setResult(RESULT_OK, resultIntent);
                 finish();
             }
         });
