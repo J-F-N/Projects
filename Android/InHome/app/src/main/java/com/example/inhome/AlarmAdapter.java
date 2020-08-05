@@ -10,6 +10,8 @@
  **********************************************************************/
 package com.example.inhome;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,16 +24,24 @@ import java.util.ArrayList;
 
 public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.alarmViewHolder> {
 
-    private ArrayList<Alarm> alarmList;
     private MyOnItemClickListener mClickListener;
+    private Context mContext;
+    private Cursor mCursor;
+
+    public AlarmAdapter(Context context, Cursor cursor) {
+
+        mContext = context;
+        mCursor = cursor;
+
+    }
 
     public interface MyOnItemClickListener {
 
         void onItemClick(int position);
-        void onDeleteClick(int position);
+        void onDeleteClick(int position, RecyclerView.ViewHolder holder);
     }
 
-    public static class alarmViewHolder extends RecyclerView.ViewHolder{
+    public static class alarmViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView alarmImage;
         public TextView alarmTextTitle;
@@ -74,17 +84,12 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.alarmViewHol
                         int position = getAdapterPosition();
 
                         if(position != RecyclerView.NO_POSITION) {
-                            listener.onDeleteClick(position);
+                            listener.onDeleteClick(position, alarmViewHolder.this);
                         }
                     }
                 }
             });
         }
-    }
-
-    public  AlarmAdapter(ArrayList<Alarm> alarmList) {
-
-        this.alarmList = alarmList;
     }
 
     @NonNull
@@ -100,20 +105,45 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmAdapter.alarmViewHol
     @Override
     public void onBindViewHolder(@NonNull alarmViewHolder holder, int position) {
 
-        Alarm card = alarmList.get(position);
+        if(!mCursor.moveToPosition(position)) {
+            return;
+        }
 
-        holder.alarmImage.setImageResource(card.getAlarmImage());
-        holder.alarmTextTitle.setText(card.getTitle());
+        String title = mCursor.getString(mCursor.getColumnIndex(AlarmContract.AlarmEntry.COLUMN_TITLE));
+        String description = mCursor.getString(mCursor.getColumnIndex(AlarmContract.AlarmEntry.COLUMN_DESCRIPTION));
+        int alarmImage = mCursor.getInt(mCursor.getColumnIndex(AlarmContract.AlarmEntry.COLUMN_IMAGE));
+        long id = mCursor.getLong(mCursor.getColumnIndex(AlarmContract.AlarmEntry._ID));
+
+        holder.itemView.setTag(id);
+        holder.alarmImage.setImageResource(alarmImage);
+        holder.alarmTextTitle.setText(title);
+        holder.alarmTextDate.setText("some dates or a description");
+        //todo set dates to view or maybe part of the description
+
     }
 
     //get the current number of alarms in the adapter.
     @Override
     public int getItemCount() {
-        return alarmList.size();
+        return mCursor.getCount();
     }
 
     public void setMyOnClickItemListener(MyOnItemClickListener listener) {
 
         mClickListener = listener;
+    }
+
+    public void newCursor(Cursor newCursor) {
+
+        if(mCursor != null) {
+            mCursor.close();
+        }
+
+        mCursor = newCursor;
+
+        if (newCursor != null) {
+
+            notifyDataSetChanged();
+        }
     }
 }

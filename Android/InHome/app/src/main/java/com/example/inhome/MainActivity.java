@@ -14,29 +14,38 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
-    public AlarmManager alarmManager;                       // object to manage alarms at runtime
+    private ArrayList<Alarm> alarmList;
     private RecyclerView alarmRecyclerView;                 // for association with View
     private RecyclerView.LayoutManager alarmLayoutManager;  // manages RecyclerView object
     private ImageButton addButton;                          // button to trigger AddAlarmActivity
     public AlarmAdapter alarmRecyclerAdapter;               // adapter to connect alarms with the RecyclerView
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        alarmManager = new AlarmManager();  // instantiate AlarmManager to manage alarms during runtime.
+        alarmList = new ArrayList<Alarm>();
 
-       buildRecycler();
-       buildGUIElements();
+        AlarmDBHelper dbHelper = new AlarmDBHelper(this);
+        db = dbHelper.getWritableDatabase();
+        buildRecycler();
+        buildGUIElements();
     }
 
     // runs when we return from the child activity AddAlarmActivity
@@ -50,7 +59,27 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
 
                 Alarm alarm = data.getParcelableExtra("alarm");
-                alarmManager.addAlarm(alarm);
+
+                ContentValues cv = new ContentValues();
+                cv.put(AlarmContract.AlarmEntry.COLUMN_TITLE, alarm.getTitle());
+                cv.put(AlarmContract.AlarmEntry.COLUMN_IMAGE, alarm.getAlarmImage());
+                cv.put(AlarmContract.AlarmEntry.COLUMN_DESCRIPTION, alarm.getDescription());
+                cv.put(AlarmContract.AlarmEntry.COLUMN_HOUR, alarm.getHour());
+                cv.put(AlarmContract.AlarmEntry.COLUMN_MINUTE, alarm.getMinute());
+
+                //if this is a weekly alarm, call method to format weekday selection as string
+                if(alarm.getClass() == AlarmWeekly.class)
+                    cv.put(AlarmContract.AlarmEntry.COLUMN_DAYS, ((AlarmWeekly) alarm).daysAsString());
+
+                //else this is a date alarm, call method to format dates selection as string
+                else
+                    cv.put(AlarmContract.AlarmEntry.COLUMN_DAYS, ((AlarmDate) alarm).datesAsString());
+
+                db.insert(AlarmContract.AlarmEntry.TABLE_NAME, null, cv);
+
+                alarmList.add(alarm);
+
+                alarmRecyclerAdapter.newCursor(retrieveEntries());
 
                 alarmRecyclerAdapter.notifyDataSetChanged();
 
@@ -71,28 +100,25 @@ public class MainActivity extends AppCompatActivity {
      *********************************************************************
      Return: VOID
      ********************************************************************/
-    public void buildRecycler() {
+    private void buildRecycler() {
 
         alarmRecyclerView = findViewById(R.id.recycler_alarm);
         alarmLayoutManager = new LinearLayoutManager(this);
 
         alarmRecyclerView.setHasFixedSize(true);
-        alarmRecyclerAdapter = new AlarmAdapter(alarmManager.shareList());
+        alarmRecyclerAdapter = new AlarmAdapter(this, retrieveEntries());
         alarmRecyclerView.setLayoutManager(alarmLayoutManager);
         alarmRecyclerView.setAdapter(alarmRecyclerAdapter);
         alarmRecyclerAdapter.setMyOnClickItemListener(new AlarmAdapter.MyOnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                alarmManager.getItem(position); //position is also this alarms ID,
-                                                //since they are positioned by their IDs.
                 //todo go to edit alarm activity and send this alarm objects info
             }
 
             @Override
-            public void onDeleteClick(int position) {
+            public void onDeleteClick(int position, RecyclerView.ViewHolder holder) {
 
-                alarmManager.deleteAlarm(position);
-                alarmRecyclerAdapter.notifyItemRemoved(position);
+                removeEntry((long) holder.itemView.getTag());
             }
         });
     }
@@ -104,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
      *********************************************************************
      Return: VOID
      ********************************************************************/
-    public void buildGUIElements() {
+    private void buildGUIElements() {
 
         addButton = (ImageButton) findViewById(R.id.button_add);
 
@@ -116,5 +142,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+    }
+
+    private Cursor retrieveEntries() {
+
+        return db.query(
+                AlarmContract.AlarmEntry.TABLE_NAME,
+                null,
+                null,
+                null,
+                null,
+                null,
+                AlarmContract.AlarmEntry.COLUMN_TIMESTAMP + " DESC"
+        );
+    }
+
+    private void removeEntry(long id) {
+
+        db.delete(AlarmContract.AlarmEntry.TABLE_NAME,
+                AlarmContract.AlarmEntry._ID + "=" + id, null);
+        
+        alarmRecyclerAdapter.newCursor(retrieveEntries());
     }
 }

@@ -37,6 +37,9 @@ public class AlarmWeekly extends Alarm implements Parcelable {
         alarmImage = in.readInt();
         title = in.readString();
         description = in.readString();
+        dayArray = in.createBooleanArray();
+        hour = in.readInt();
+        minute = in.readInt();
     }
 
     //needed for parcelable interface
@@ -68,6 +71,9 @@ public class AlarmWeekly extends Alarm implements Parcelable {
         parcel.writeInt(alarmImage);
         parcel.writeString(title);
         parcel.writeString(description);
+        parcel.writeBooleanArray(dayArray);
+        parcel.writeInt(hour);
+        parcel.writeInt(minute);
     }
 
     @Override
@@ -90,6 +96,9 @@ public class AlarmWeekly extends Alarm implements Parcelable {
 
     @Override
     public int getMinute() { return minute; }
+
+    @Override
+    public String getDescription() { return description; }
 
     @Override
     public void setAlarmImage(int alarmImage) {
@@ -124,14 +133,21 @@ public class AlarmWeekly extends Alarm implements Parcelable {
     }
 
     // set this alarms active days of the week
-    public void setDays(boolean[] dayArray) {
+    public void setDays(boolean[] sourceArray) {
 
-        System.arraycopy(this.dayArray, 0, dayArray, 0, 7);
+        System.arraycopy(sourceArray, 0, this.dayArray, 0, 7);
     }
 
-    //todo remove after testing
-    @Override
-    public void changeText(String text) {
-        this.title = text;
+    public String daysAsString() {
+
+        StringBuilder arrayString = new StringBuilder();
+
+        arrayString.append("Days"); // we start this string to indicate this is a weekday array
+
+        for (boolean value: dayArray) {
+            arrayString.append(" ").append(value);
+        }
+
+        return arrayString.toString();
     }
 }

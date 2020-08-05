@@ -41,6 +41,9 @@ public class AlarmDate extends Alarm  implements Parcelable {
         alarmImage = in.readInt();
         title = in.readString();
         description = in.readString();
+        dateArrayList = in.readArrayList(null);
+        hour = in.readInt();
+        minute = in.readInt();
     }
 
     //needed for parcelable interface
@@ -70,6 +73,9 @@ public class AlarmDate extends Alarm  implements Parcelable {
         parcel.writeInt(alarmImage);
         parcel.writeString(title);
         parcel.writeString(description);
+        parcel.writeList(dateArrayList);
+        parcel.writeInt(hour);
+        parcel.writeInt(minute);
     }
 
     @Override
@@ -92,6 +98,9 @@ public class AlarmDate extends Alarm  implements Parcelable {
 
     @Override
     public int getMinute() { return minute; }
+
+    @Override
+    public String getDescription() { return description; }
 
     @Override
     public void setAlarmImage(int alarmImage) {
@@ -125,9 +134,16 @@ public class AlarmDate extends Alarm  implements Parcelable {
         dateArrayList.addAll(dateArray);
     }
 
-    //todo remove after testing
-    @Override
-    public void changeText(String text) {
-        this.title = text;
+    public String datesAsString() {
+
+        StringBuilder arrayString = new StringBuilder();
+
+        arrayString.append("Dates"); // we start this string to indicate this is a date array
+
+        for (int i = 0; i < dateArrayList.size(); i++) {
+            arrayString.append(" ").append(dateArrayList.get(i));
+        }
+
+        return arrayString.toString();
     }
 }

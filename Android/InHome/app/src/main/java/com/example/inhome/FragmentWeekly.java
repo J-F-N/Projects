@@ -87,29 +87,29 @@ public class FragmentWeekly extends Fragment {
             dayArray[1] = false;
 
         if(wednesday.isChecked())
-            dayArray[1] = true;
+            dayArray[2] = true;
         else
-            dayArray[1] = false;
+            dayArray[2] = false;
 
         if(thursday.isChecked())
-            dayArray[1] = true;
+            dayArray[3] = true;
         else
-            dayArray[1] = false;
+            dayArray[3] = false;
 
         if(friday.isChecked())
-            dayArray[1] = true;
+            dayArray[4] = true;
         else
-            dayArray[1] = false;
+            dayArray[4] = false;
 
         if(saturday.isChecked())
-            dayArray[1] = true;
+            dayArray[5] = true;
         else
-            dayArray[1] = false;
+            dayArray[5] = false;
 
         if(sunday.isChecked())
-            dayArray[1] = true;
+            dayArray[6] = true;
         else
-            dayArray[1] = false;
+            dayArray[6] = false;
 
         return dayArray;
     }

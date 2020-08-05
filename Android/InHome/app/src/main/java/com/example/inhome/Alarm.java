@@ -26,6 +26,7 @@ public abstract class Alarm {
     public abstract int getAlarmID();
     public abstract int getHour();
     public abstract int getMinute();
+    public abstract String getDescription();
 
     // setters
     public abstract void setAlarmImage(int alarmImage);
@@ -34,7 +35,4 @@ public abstract class Alarm {
     public abstract void setAlarmID(int alarmID);
     public abstract void setHour(int hour);
     public abstract void setMinute(int minute);
-
-    // todo remove after testing
-    public abstract void changeText (String text);
 }
