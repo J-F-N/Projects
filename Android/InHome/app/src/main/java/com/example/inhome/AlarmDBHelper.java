@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 public class AlarmDBHelper  extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "alarmlist.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     public AlarmDBHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +28,8 @@ public class AlarmDBHelper  extends SQLiteOpenHelper {
                 AlarmEntry.COLUMN_HOUR + " INTEGER NOT NULL, " +
                 AlarmEntry.COLUMN_MINUTE + " INTEGER NOT NULL, " +
                 AlarmEntry.COLUMN_DAYS + " TEXT NOT NULL," +
-                AlarmEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP" +
+                AlarmEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                AlarmEntry.COLUMN_RECORDING + " BLOB NOT NULL" +
                 ");";
 
 

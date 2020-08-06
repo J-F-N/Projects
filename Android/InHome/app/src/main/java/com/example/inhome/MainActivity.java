@@ -24,6 +24,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,9 +63,24 @@ public class MainActivity extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
 
-                Alarm alarm = data.getParcelableExtra("alarm");
-
                 ContentValues cv = new ContentValues();
+
+                Alarm alarm = data.getParcelableExtra("alarm");
+                String audioFilePath = data.getStringExtra("audioFilePath");
+                File audioFile = new File(audioFilePath);
+
+                try {
+
+                    FileInputStream inputStream = new FileInputStream(audioFilePath);
+                    BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                    byte[] audioBytes = new byte[bufferedInputStream.available()];
+                    bufferedInputStream.read(audioBytes);
+                    cv.put(AlarmContract.AlarmEntry.COLUMN_RECORDING, audioBytes);
+                } catch (IOException e) {
+
+                    e.printStackTrace();
+                }
+
                 cv.put(AlarmContract.AlarmEntry.COLUMN_TITLE, alarm.getTitle());
                 cv.put(AlarmContract.AlarmEntry.COLUMN_IMAGE, alarm.getAlarmImage());
                 cv.put(AlarmContract.AlarmEntry.COLUMN_DESCRIPTION, alarm.getDescription());
@@ -78,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
                 db.insert(AlarmContract.AlarmEntry.TABLE_NAME, null, cv);
 
                 alarmList.add(alarm);
+
+                audioFile.delete();
 
                 alarmRecyclerAdapter.newCursor(retrieveEntries());
 

@@ -38,35 +38,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Mon" />
+                android:text="M" />
 
             <CheckBox
                 android:id="@+id/check_tuesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Tues" />
+                android:text="T" />
 
             <CheckBox
                 android:id="@+id/check_wednesday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Wed" />
+                android:text="W" />
 
             <CheckBox
                 android:id="@+id/check_thursday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Thu" />
+                android:text="Th" />
 
             <CheckBox
                 android:id="@+id/check_friday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Fri" />
+                android:text="F" />
 
             <CheckBox
                 android:id="@+id/check_saturday"
