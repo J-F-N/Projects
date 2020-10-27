@@ -1,8 +1,10 @@
-package com.NCodes.inhome;
+package com.NCodes.inhome.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.NCodes.inhome.R;
 
 public class AlarmListActivity extends AppCompatActivity {
 
