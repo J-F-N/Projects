@@ -21,6 +21,8 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import java.util.List;
 import java.util.Objects;
 
 public class FragmentDate extends Fragment {
@@ -41,6 +43,10 @@ public class FragmentDate extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), DateSelectionActivity.class);
+
+                List<Long> dateList = ((AddAlarmActivity)getActivity()).getDateList();
+
+
 
                 Objects.requireNonNull(getActivity()).startActivityForResult(intent, 1);
             }

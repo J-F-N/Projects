@@ -18,14 +18,15 @@ import android.widget.Button;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.squareup.timessquare.CalendarPickerView;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 public class DateSelectionActivity extends AppCompatActivity {
 
+    ArrayList<Date> selectedDates;
+
     Button buttonDone;          // to return to AddAlarmActivity sending selected dates.
-    Intent intentFromParent;    // contains List from AddAlarmActivity.
                                 // This will be sent back with date longs.
 
     @Override
@@ -56,17 +57,14 @@ public class DateSelectionActivity extends AppCompatActivity {
         //initialize a new CalendarPickerView with the current date selected and
         // the ability to select multiple dates.
         calendar.init(today, nextYear.getTime())
-                .inMode(CalendarPickerView.SelectionMode.MULTIPLE)
-                .withSelectedDate(today);
+                .inMode(CalendarPickerView.SelectionMode.MULTIPLE).withSelectedDates(calendar.getSelectedDates());
 
         buttonDone.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                intentFromParent = getIntent();
-
-                List<Date> selectedDates = calendar.getSelectedDates(); // dates returned as List<>
+                selectedDates = (ArrayList<Date>) calendar.getSelectedDates(); // dates returned as List<> of long type
 
                 long[] longDates = new long[selectedDates.size()]; // make an array long enough to contain List<> dates.
 

@@ -1,3 +1,5 @@
+
+
 package com.example.inhome;
 
 import android.content.Context;
@@ -19,19 +21,18 @@ public class AlarmDBHelper  extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        final String SQL_CREATE_ALARM_TABLE = "CREATE TABLE " +
-                AlarmEntry.TABLE_NAME + " (" + AlarmEntry._ID +
-                " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                AlarmEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
-                AlarmEntry.COLUMN_IMAGE + " INTEGER NOT NULL, " +
-                AlarmEntry.COLUMN_DESCRIPTION + " TEXT NOT NULL," +
-                AlarmEntry.COLUMN_HOUR + " INTEGER NOT NULL, " +
-                AlarmEntry.COLUMN_MINUTE + " INTEGER NOT NULL, " +
-                AlarmEntry.COLUMN_DAYS + " TEXT NOT NULL," +
-                AlarmEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
-                AlarmEntry.COLUMN_RECORDING + " BLOB NOT NULL" +
-                ");";
-
+            final String SQL_CREATE_ALARM_TABLE = "CREATE TABLE " +
+                    AlarmEntry.TABLE_NAME + " (" + AlarmEntry._ID +
+                    " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    AlarmEntry.COLUMN_TITLE + " TEXT NOT NULL, " +
+                    AlarmEntry.COLUMN_IMAGE + " INTEGER NOT NULL, " +
+                    AlarmEntry.COLUMN_DESCRIPTION + " TEXT NOT NULL," +
+                    AlarmEntry.COLUMN_HOUR + " INTEGER NOT NULL, " +
+                    AlarmEntry.COLUMN_MINUTE + " INTEGER NOT NULL, " +
+                    AlarmEntry.COLUMN_DAYS + " TEXT NOT NULL," +
+                    AlarmEntry.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                    AlarmEntry.COLUMN_RECORDING + " BLOB NOT NULL" +
+                    ");";
 
         db.execSQL(SQL_CREATE_ALARM_TABLE);
     }

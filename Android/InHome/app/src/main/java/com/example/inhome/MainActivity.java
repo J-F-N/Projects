@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton addButton;                          // button to trigger AddAlarmActivity
     public AlarmAdapter alarmRecyclerAdapter;               // adapter to connect alarms with the RecyclerView
     SQLiteDatabase db;
+    private AlarmScheduler scheduler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         alarmList = new ArrayList<Alarm>();
 
+        scheduler = new AlarmScheduler();
         AlarmDBHelper dbHelper = new AlarmDBHelper(this);
         db = dbHelper.getWritableDatabase();
         buildRecycler();
@@ -87,15 +89,21 @@ public class MainActivity extends AppCompatActivity {
                 cv.put(AlarmContract.AlarmEntry.COLUMN_HOUR, alarm.getHour());
                 cv.put(AlarmContract.AlarmEntry.COLUMN_MINUTE, alarm.getMinute());
 
-                //if this is a weekly alarm, call method to format weekday selection as string
+                // if this is a weekly alarm, call method to format weekday selection as string
                 if(alarm.getClass() == AlarmWeekly.class)
                     cv.put(AlarmContract.AlarmEntry.COLUMN_DAYS, ((AlarmWeekly) alarm).daysAsString());
 
-                //else this is a date alarm, call method to format dates selection as string
+                // else this is a date alarm, call method to format dates selection as string
                 else
                     cv.put(AlarmContract.AlarmEntry.COLUMN_DAYS, ((AlarmDate) alarm).datesAsString());
 
-                db.insert(AlarmContract.AlarmEntry.TABLE_NAME, null, cv);
+                // insert returns the unique Primary Key for the new row.
+                // this will be used as the to label the pending intent in AlarmManager
+                long newRowID = db.insert(AlarmContract.AlarmEntry.TABLE_NAME, null, cv);
+
+                scheduler.scheduleAlarm(alarm, newRowID, getApplicationContext());
+
+                Toast.makeText(MainActivity.this, "Added Alarm " + alarm.title, Toast.LENGTH_SHORT).show();
 
                 alarmList.add(alarm);
 

@@ -100,6 +100,8 @@ public class AlarmWeekly extends Alarm implements Parcelable {
     @Override
     public String getDescription() { return description; }
 
+    public boolean[] getDays() { return dayArray; };
+
     @Override
     public void setAlarmImage(int alarmImage) {
         this.alarmImage = alarmImage;

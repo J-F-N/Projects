@@ -1,7 +1,6 @@
 package com.example.inhome;
 
 import android.provider.BaseColumns;
-import java.sql.Blob;
 
 public class AlarmContract {
 

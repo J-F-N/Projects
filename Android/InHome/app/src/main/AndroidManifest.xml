@@ -21,6 +21,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".EditWeeklyAlarm" />
+
+        <receiver
+            android:name=".AlarmReceiver"
+            android:enabled="true"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" >
+
+        </receiver>
     </application>
 
 </manifest>
