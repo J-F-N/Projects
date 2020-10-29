@@ -21,12 +21,16 @@ public class Alarm {
 
     private String title;
     private String description;
-    private long nextFire;
+    private String recFilePath; // file path to local directory holding recording for alarm.
+
+    private long nextFire;      // the next date the alarm should fire.
+                                // used to schedule the pending intent.
 
     // constructor
-    public Alarm(String title, String description, Long nextFire) {
+    public Alarm(String title, String description, String recFilePath, long nextFire) {
         this.title = title;
         this.description = description;
+        this.recFilePath = recFilePath;
         this.nextFire = nextFire;
     }
 
@@ -47,8 +51,16 @@ public class Alarm {
         return nextFire;
     }
 
+    public String getRecFilePath() {
+        return recFilePath;
+    }
+
     public void setId(int id) {
         this.alarmID = id;
+    }
+
+    public void setRecFilePath(String recFilePath) {
+        this.recFilePath = recFilePath;
     }
 
     public void setNextFire(long nextFire) {

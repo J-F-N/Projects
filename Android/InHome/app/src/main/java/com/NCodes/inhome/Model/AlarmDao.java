@@ -21,16 +21,17 @@ import java.util.List;
 public interface AlarmDao {
 
     @Insert
-    void insert(Alarm addedAlarm);
+    void insertAlarm(Alarm addedAlarm);
 
     @Update
     void updateAlarm(Alarm updatedAlarm);
 
     @Update
+    @Transaction
     void updateAlarmFire(Alarm updatedAlarm);
 
     @Delete
-    void delete(Alarm deletedAlarm);
+    void deleteAlarm(Alarm deletedAlarm);
 
     @Query("SELECT * FROM alarm_table ORDER BY NEXTFIRE ASC")
     LiveData<List<Alarm>> getAllAlarms();
